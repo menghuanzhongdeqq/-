@@ -1,0 +1,33 @@
+<html>
+<head>
+<script language="javascript">
+  var timeID;
+  var Running=false;
+  function StartTime()
+  {
+    running=true;
+    ChangeTime();
+  }
+  function ChangeTime()
+  {
+    var currentTime=new Date();
+    document.myClock.show.value=currentTime.toLocaleString();
+    //递归调用
+    timeID=setTimeout("ChangeTime()",1000);
+   }
+  function StopTime()
+  {
+     if (Running)
+        clearTimeout(timeID);
+     Running=false;
+  }
+</script>
+</head>
+<body onLoad="StartTime()" onUnload="StopTime()"> <!--事件加载时触发，关闭浏览器触发-->
+<form name="myClock" >
+	<center>
+   <input type="text" name="show" value=" " size=20>
+    </center>
+</form>
+</body>
+</html> 
